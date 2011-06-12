@@ -1,0 +1,12 @@
+
+LeylandX::Starter - a starter for Leyland which is build with Leyland
+
+
+  perl Build.PL
+  ./Build installdeps
+  plackup app.psgi
+
+Default project root is the directory where this module is placed.
+
+
+
