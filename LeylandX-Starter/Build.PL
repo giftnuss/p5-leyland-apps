@@ -7,13 +7,14 @@ my $builder = Module::Build->new(
     license => 'perl',
     dist_abstract => 'Start a Leyland application from a Web',
     dist_author => 'Sebastian Knapp <rock@ccls-online.de>',
-    dist_version => '0.00001',
+    dist_version => '0.00002',
     requires => {
         'perl' => '5.010001',
         'autodie' => '2.10',
         'Leyland' => 0.001001,
         'MooseX::Types::Path::Class' => '0.05',
-        'Data::Structure::Util' => '0.13'
+        'Data::Structure::Util' => '0.13',
+        'HTML::FormHandler' => '0.34001'
     },
     build_requires => {
         'Test::More' => 0,
@@ -23,8 +24,8 @@ my $builder = Module::Build->new(
     create_makefile_pl  => 'traditional',
     meta_add => {
         resources => {
-            repository => 'git://github.com/giftnuss/p5-leylandx-starter.git',
-            homepage => 'http://github.com/giftnuss/p5-leylandx-starter/tree/master'
+            repository => 'git://github.com/giftnuss/p5-leyland-apps.git',
+            homepage => 'http://github.com/giftnuss/p5-leyland-apps/tree/master/LeylandX-Starter'
         }
     }
 );
