@@ -25,6 +25,7 @@ has dir_list => (
       , 'public/images'
       , 'public/js'
       , 'i18n'
+      , 't'
       ]
    }
 );
