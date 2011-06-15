@@ -8,6 +8,17 @@ use namespace::autoclean;
 
 extends 'Leyland';
 
+use LeylandX::Languages::Localizer;
+
+sub setup {
+	my $self = shift;
+
+	# init localizer, if localization path given
+	$self->_set_localizer(LeylandX::Languages::Localizer->new(path => $self->config->{locales}))
+		if exists $self->config->{locales};
+}
+
+
 =head1 NAME
 
 LeylandX::Languages - RESTful web application based on Leyland
@@ -23,18 +34,6 @@ L<Leyland>
 =head1 METHODS
 
 =head2 setup()
-
-=cut
-
-sub setup {
-	my $self = shift;
-	
-	# this method is automatically called after the application has
-	# been initialized. you can perform some necessary initializations
-	# (like database connections perhaps) and other operations that
-	# are only needed to be performed once when starting the application.
-	# you can remove it completely if you don't use it.
-}
 
 =head1 AUTHOR
 

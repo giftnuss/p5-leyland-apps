@@ -1,2 +1,25 @@
-		<h1>[== $c->loc('Hello World!') =]</h1>
-		<p>[== $c->loc('%1, running on Leyland v%2', $c->app->name, $Leyland::VERSION) =]</p>
+
+<ul>
+  <li>
+    <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">
+        List of languages with ISO-639-3 codes.
+    </a>
+  </li>
+  <li>
+    <a href="http://users.elite.net/runner/jennifers/hello.htm">
+       Greetings in more than one thousand languages.
+    </a>
+  </li>
+</ul>
+
+<ul id="hello-world-menu">
+  <?pl for my $code ($c->app->localizer->get_langcodes_for_msg('Hello World!')) { ?>
+  <li>
+    <a href="/[== $code =]">[== $code =]</a>
+  </li>
+  <?pl } ?>
+</ul>
+		
+   <h1>[== $c->loc('Hello World!') =]</h1>
+		
+   <p>[== $c->loc('%1, running on Leyland v%2', $c->app->name, $Leyland::VERSION) =]</p>

@@ -6,31 +6,7 @@ use namespace::autoclean;
 
 with 'Leyland::Controller';
 
-=head1 NAME
-
-LeylandX::Languages::Controller::Root - Top level controller of LeylandX-Languages
-
-=head1 SYNOPSIS
-
-=head1 DESCRIPTION
-
-=head1 PREFIX
-
-I<none, this is the root controller>
-
-=cut
-
-# the root controller has no prefix, other controllers will have something
-# like '/blog' (i.e. something with a starting slash)
 prefix { '' }
-
-=head1 ROUTES
-
-=head2 GET /
-
-Returns text/html
-
-=cut
 
 get '^/$' {
     # $self and $c are automatically available for you here
@@ -38,21 +14,20 @@ get '^/$' {
 }
 
 get '^/([a-z]{2})$' {
-    $c->template('index.html');
+    my ($lang) = @_;
+    $c->set_lang($lang);
+    $c->forward('/');
 }
 
 get '^/([a-z]{3})$' {
     $c->template('index.html');
 }
 
-=head1 METHODS
-
-=head2 auto( $c )
-
-=cut
-
 sub auto {
     my ($self, $c) = @_;
+
+    # provide some defaults
+    $c->set_lang('de');
 
     # this method is automatically called before the actual route method
     # is performed. every auto() method starting from the Root controller
@@ -104,6 +79,31 @@ sub post_route {
     # method after serialization (even if it's a scalar, in which case $ret will be a reference
     # to a scalar).
 }
+=head1 NAME
+
+LeylandX::Languages::Controller::Root - Top level controller of LeylandX-Languages
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+=head1 PREFIX
+
+I<none, this is the root controller>
+
+=head1 ROUTES
+
+=head2 GET /
+
+Returns text/html
+
+=head1 METHODS
+
+=head2 auto( $c )
+
+Sets default language to 'de'.
+
+=cut
 
 =head1 AUTHOR
 
