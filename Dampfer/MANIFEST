@@ -1,0 +1,9 @@
+app.psgi
+Build.PL
+Changes
+lib/Dampfer.pm
+lib/Dampfer/Controller/Root.pm
+MANIFEST			This list of files
+MANIFEST.SKIP
+views/index.html
+views/layouts/main.html
