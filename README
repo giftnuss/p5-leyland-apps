@@ -6,4 +6,7 @@ Leyland Applications
   ----------------
   Builds an Leyland application sceleton like the leyland command does.
 
-  
+  LeylandX-Languages
+  ------------------
+  Play with i18n in Leyland.
+ 
