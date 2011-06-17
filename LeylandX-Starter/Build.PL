@@ -12,6 +12,7 @@ my $builder = Module::Build->new(
         'perl' => '5.010001',
         'autodie' => '2.10',
         'Leyland' => 0.001001,
+        'File::chdir' => '0.1004',
         'MooseX::Types::Path::Class' => '0.05',
         'Data::Structure::Util' => '0.13',
         'HTML::FormHandler' => '0.34001'
