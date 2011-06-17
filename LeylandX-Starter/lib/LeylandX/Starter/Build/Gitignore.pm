@@ -1,5 +1,5 @@
-  package LeylandX::Starter::Build::Changes
-# *****************************************
+  package LeylandX::Starter::Build::Gitignore
+# *******************************************
 ; our $VERSION = '0.01';
 # **********************
 use Moose;
@@ -28,22 +28,20 @@ no Moose;
 __DATA__
 
 _____[ gitignore ]__________________________________________________
-^blib/.*$
-^inc/.*$
-^Makefile$
-^Makefile\.old$
-^pm_to_blib$
-^Build$
-^Build\.bat$
-^_build\.*$
-^pm_to_blib.+$
-^.+\.tar\.gz$
-^\.lwpcookies$
-^cover_db$
-^pod2htm.*\.tmp$
-^[== $app_name =]-.*$
-^[._]build/.*$
-^MYMETA.yml$
-^.*\.bak$
-^views/.*\.cache$
-^.*\.log$
+blib/
+Makefile
+Makefile.old
+pm_to_blib
+Build
+Build.bat
+_build/
+.build/
+*.tar.gz
+.lwpcookies
+cover_db
+pod2htm*.tmp
+[== $app_name =]-*
+MYMETA.yml
+*.bak
+views/*.cache
+*.log

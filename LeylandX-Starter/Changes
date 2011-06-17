@@ -1,4 +1,12 @@
 Revision history for LeylandX-Starter
 
-Wed May 25 20:53:22 2011
+0.00003
+	- .gitignore creation
+	- a MANIFEST - via Build via Build.PL
+
+0.00002 - Mo 13. Jun 23:20:36 CEST 2011
+	- t/ directory is in dirtree task
+	- Build.PL creation
+
+0.00001 - Wed May 25 20:53:22 2011
 	- Initial release

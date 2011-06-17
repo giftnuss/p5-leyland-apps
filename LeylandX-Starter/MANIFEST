@@ -8,6 +8,7 @@ lib/LeylandX/Starter.pm
 lib/LeylandX/Starter/Build.pm
 lib/LeylandX/Starter/Build/App.pm
 lib/LeylandX/Starter/Build/Basedir.pm
+lib/LeylandX/Starter/Build/Build.pm
 lib/LeylandX/Starter/Build/Changes.pm
 lib/LeylandX/Starter/Build/Controller/Root.pm
 lib/LeylandX/Starter/Build/Dirtree.pm

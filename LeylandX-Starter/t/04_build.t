@@ -41,7 +41,8 @@ my $expect_dirlist = [
     'public/css',
     'public/images',
     'public/js',
-    'i18n'];
+    'i18n',
+    't'];
 
 is_deeply($dirtree->dir_list,$expect_dirlist,'default dirtree');
 
@@ -52,8 +53,11 @@ my @tasknames = sort keys %$tasks;
 my $expected_tasknames = [
     'app',
     'basedir',
+    'build',
     'changes',
     'dirtree',
+    'gitignore',
+    'manifest',
     'manifest_skip',
     'psgi',
     'root',
