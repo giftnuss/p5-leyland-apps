@@ -1,8 +1,11 @@
 Revision history for LeylandX-Starter
 
-0.00003
+0.00003 - Di 21. Jun 00:27:44 CEST 2011
 	- .gitignore creation
 	- a MANIFEST - via Build via Build.PL
+        - Fix: load author information on project start
+        - not accepting everything as project name
+        - dummy create context option
 
 0.00002 - Mo 13. Jun 23:20:36 CEST 2011
 	- t/ directory is in dirtree task

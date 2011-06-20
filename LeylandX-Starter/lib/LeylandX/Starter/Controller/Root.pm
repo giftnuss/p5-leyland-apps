@@ -13,13 +13,6 @@ use LeylandX::Starter::Build;
 prefix { '' }
 
 get '^/$' {
-    foreach my $formname (qw/author/) {
-        unless( %{$c->form($formname)->values} ) {
-            if( my $freezed = $c->thaw($formname) ){
-                $c->form($formname)->process(params => $freezed);
-            }
-        }
-    }
     $c->template('index.html');
 }
 
@@ -61,6 +54,13 @@ sub auto {
 sub pre_route {
     my ($self, $c) = @_;
 
+    foreach my $formname (qw/author project/) {
+        unless( %{$c->form($formname)->values} ) {
+            if( my $freezed = $c->thaw($formname) ){
+                $c->form($formname)->process(params => $freezed);
+            }
+        }
+    }
     # this method is automatically called before the actual route method
     # is performed, but only for route methods in this controller, as
     # opposed to the auto() method. the pre_route() method of a controller,

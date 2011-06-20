@@ -12,7 +12,21 @@ has_field module =>
     (
         type => 'Text',
         label => 'Fresh Leyland Application',
-        required => 1
+        required => 1,
+        apply => [
+            { 
+              transform => sub { 
+                  $_[0] =~ s/^\W*//; $_[0] =~ s/\W*$//;
+                  $_[0] =~ s/\W+/::/gs;
+                  return $_[0];
+              },
+              message => 'Transformed...'
+            },
+            {
+              check => sub { $_[0] =~ /^\w+(::\w+)+$/ },
+              message => 'Invalid Application Name' 
+            }
+        ]
     );
 
 has_field directory =>
@@ -22,6 +36,12 @@ has_field directory =>
         size => 40,
         set_validate => 'check_dir_is_writable'
     );
+
+has_field with_context =>
+   (
+        type => 'Boolean',
+        label => 'Create context class',
+   );
 
 has_field start =>
     (
