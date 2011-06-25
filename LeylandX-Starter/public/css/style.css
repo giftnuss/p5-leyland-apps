@@ -633,6 +633,9 @@ textarea.error {
   margin: 0 auto;
   padding: 4em;
 }
+#main > div {
+  clear: both;
+}
 
 input[type=text] {
   margin: 0.2em;

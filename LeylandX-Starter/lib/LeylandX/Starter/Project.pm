@@ -54,6 +54,12 @@ has email =>
     isa => 'Str'
 );
 
+has abstract =>
+(
+    is => 'ro',
+    isa => 'Maybe[Str]',
+);
+
 has override_context =>
 (
     is => 'ro',

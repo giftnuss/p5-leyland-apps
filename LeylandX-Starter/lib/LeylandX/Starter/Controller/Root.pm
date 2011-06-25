@@ -37,7 +37,7 @@ post '^/(\w+)$' accepts 'multipart-formdata' {
 
 sub auto {
     my ($self, $c) = @_;
-
+    $c->set_lang('de');
     # this method is automatically called before the actual route method
     # is performed. every auto() method starting from the Root controller
     # and up to the matched route's controller are invoked in order,
@@ -102,6 +102,7 @@ sub start_project {
 
     $args->{package_name} = $c->form('project')->field('module')->value;
     $args->{root_dir} = $c->form('project')->field('directory')->value;
+    $args->{abstract} = $c->form('project')->field('abstract')->value;
 
     $args->{author} = $c->form('author')->field('author')->value;
     $args->{email} = $c->form('author')->field('email')->value;

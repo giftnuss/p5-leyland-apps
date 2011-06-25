@@ -37,11 +37,12 @@ has_field directory =>
         set_validate => 'check_dir_is_writable'
     );
 
-has_field with_context =>
-   (
-        type => 'Boolean',
-        label => 'Create context class',
-   );
+has_field abstract =>
+    (
+        type => 'Text',
+        label => 'Abstract',
+        size => 40
+    );
 
 has_field start =>
     (

@@ -3,6 +3,12 @@ use Moose;
 
 extends 'HTML::FormHandler';
 
+has 'context' =>
+(
+    is => 'rw',
+    isa => 'Leyland::Context'
+);
+
 sub _self_id
     {
         my $class = blessed(shift);
@@ -17,6 +23,18 @@ sub _self_id
 has '+action' => (default => sub { shift->_self_id('/') });
 
 has '+name' => (default => sub { shift->_self_id('_') . '_form' });
+
+# - customize me ;)
+# has '+widget_wrapper' => (default => 'None');
+
+sub localize_meth 
+{
+    my ($field,$msg,@args) = @_;
+    # use it as it is
+    # $msg =~ s/\[_(\d+)\]/%$1/g;
+    return $field->form->context->loc($msg,@args);
+}
+
 
 __PACKAGE__->meta->make_immutable;
 no Moose;

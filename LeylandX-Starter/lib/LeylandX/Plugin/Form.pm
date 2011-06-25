@@ -37,8 +37,9 @@ sub load_forms {
     );
 
     foreach my $formclass ($finder->plugins) {
-        (my $name = $formclass) =~ s/^.*:://;
-        $name = lc(substr($name,0,1)) . substr($name,1);
+        my $name = lc(substr($formclass,length($namespace)));
+        $name =~ s/^:://;
+        $name =~ s/::/-/;
         $forms->{$name} = $formclass;
     }
     return $forms;
@@ -50,7 +51,7 @@ sub form {
     return undef unless defined $forms->{$name};
     return $forms->{$name} if blessed $forms->{$name};
     $forms->{$name} = $forms->{$name}->new(@args);
-    #$forms->{$name}->action('') unless $forms->{$name}->has_action;
+    $forms->{$name}->context($self);
     return $forms->{$name}
 }
 

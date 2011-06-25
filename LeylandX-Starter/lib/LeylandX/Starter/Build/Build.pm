@@ -19,7 +19,8 @@ sub forProject
         app_name => $project->app_name,
         package_name => $project->package_name,
         author => $project->author,
-        email => $project->email
+        email => $project->email,
+        abstract => $project->abstract
     };
     my $task = $self->new(opts => $opts);
     return $task;
@@ -40,7 +41,7 @@ use Module::Build;
 my $builder = Module::Build->new(
     module_name => '[== $package_name =]',
     license => 'perl',
-    dist_abstract => 'TODO',
+    dist_abstract => '[== $abstract =]',
     dist_author => '[== $author =] <[== $email =]>',
     dist_version => '0.00001',
     requires => {
