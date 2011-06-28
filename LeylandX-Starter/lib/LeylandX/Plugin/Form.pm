@@ -51,7 +51,12 @@ sub form {
     return undef unless defined $forms->{$name};
     return $forms->{$name} if blessed $forms->{$name};
     $forms->{$name} = $forms->{$name}->new(@args);
-    $forms->{$name}->context($self);
+
+    # in leyland it is common to give the current context to the form
+    # for further usage.
+    if( $forms->{$name}->can('context') ) {
+        $forms->{$name}->context($self);
+    }
     return $forms->{$name}
 }
 
