@@ -32,6 +32,7 @@ sub localize_meth
     my ($field,$msg,@args) = @_;
     # use it as it is
     # $msg =~ s/\[_(\d+)\]/%$1/g;
+    
     return $field->form->context->loc($msg,@args);
 }
 

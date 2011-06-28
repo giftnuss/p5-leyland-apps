@@ -16,7 +16,7 @@ get '^/$' {
     $c->template('index.html');
 }
 
-get '^/(\w+)' { $c->forward('GET:/') }
+get '^/(\w+)$' { $c->forward('GET:/') }
 
 post '^/(\w+)$' accepts 'multipart-formdata' {
     my ($formname) = @_;
