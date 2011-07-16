@@ -1,10 +1,22 @@
         <h1>[= $c->loc('Hello World!') =]</h1>
         <p>[= $c->loc('%1, running on Leyland v%2', $c->app->name, $Leyland::VERSION) =]</p>
 
-<div>
+<div id="sidebar">
+
+
+</div>
+
+<div id="mainpanel">
+    <div id="controls">
+        <button id="save-button">[= $c->loc('save') =]</button>
+        <button id="start-button">[= $c->loc('start') =]</button>
+    </div>
+    </div>
+    <div>
         [== $c->form('author')->render =]
         [== $c->form('project')->render =]
-</div>
-<div>
+    </div>
+    <div>
         [== $c->form('features')->render =]
+    </div>
 </div>
