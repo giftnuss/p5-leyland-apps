@@ -45,6 +45,8 @@ my $app = sub {
 };
 
 builder {
+        enable 'Debug';
+
 	# enable whatever Plack middlewares you wish here, a good example
 	# would be the Session middleware.
 	# --------------------------------------------------------------
