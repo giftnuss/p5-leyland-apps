@@ -57,21 +57,6 @@ post '^/(save|start)$' accepts 'application/json' returns 'application/json' {
     return $c->json->to_json( [\%sendback,\%errormessages] );
 };
 
-get '^/(\w+)$' { $c->forward('GET:/') };
-
-post '^/form/(\w+)$' accepts 'multipart-formdata' {
-    my ($formname) = @_;
-    my $form = $c->form($formname);
-    if( $form ) {
-        $form->process(params => $c->body_parameters->as_hashref);
-        if( $form->validated ) {
-            $c->freeze($formname,$form->values);
-        }
-    }
-
-    return $c->forward('GET:/');
-};
-
 sub auto {
     my ($self, $c) = @_;
     $c->set_lang('de');
