@@ -23,7 +23,7 @@ has_field module =>
               message => 'Transformed...'
             },
             {
-              check => sub { $_[0] =~ /^\w+(::\w+)+$/ },
+              check => sub { $_[0] =~ /^\w+(::\w+)*$/ },
               message => 'Invalid Application Name' 
             }
         ]
@@ -42,12 +42,6 @@ has_field abstract =>
         type => 'Text',
         label => 'Abstract',
         size => 40
-    );
-
-has_field start =>
-    (
-        type => 'Submit',
-        value => 'Start'
     );
 
 sub default_directory

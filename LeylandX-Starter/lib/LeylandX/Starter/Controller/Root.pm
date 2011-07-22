@@ -1,39 +1,76 @@
 package LeylandX::Starter::Controller::Root;
-
+# ******************************************
+our $VERSION = '0.02';
+# ********************
 use Moose;
 use Leyland::Parser;
 use namespace::autoclean;
 
 with 'Leyland::Controller';
 
+use Try::Tiny;
+use Data::Dumper;
 use LeylandX::Starter::Build;
 
-# the root controller has no prefix, other controllers will have something
-# like '/blog' (i.e. something with a starting slash)
 prefix { '' }
 
 get '^/$' {
     $c->template('index.html');
-}
+};
 
-get '^/(\w+)$' { $c->forward('GET:/') }
+post '^/(save|start)$' accepts 'application/json' returns 'application/json' {
+    my $start = shift eq 'start';
 
-post '^/(\w+)$' accepts 'multipart-formdata' {
+    my (%errormessages,%sendback);
+    my $parameter = {};
+   
+    try {
+        $parameter = $c->json->from_json($c->content);
+        unless(ref($parameter) eq 'HASH') {
+	    die 'Invalid data format.';
+        }
+    }
+    catch {
+        $errormessages{'_fatal'} = $_;
+    };
+    unless(%errormessages) {
+    
+        while(my ($key,$val) = each(%$parameter)) {
+            next unless my $form = $c->form($key);
+            $form->process(params => $val);
+            if( $form->validated ) {
+                 $c->freeze($key,$form->values);
+            }
+            else {
+                foreach my $fld ($form->error_fields) {
+                    $errormessages{$key}{$fld->name} = $fld->errors;
+                }
+            }
+        }
+    }
+    unless(%errormessages) {
+        if($start) {
+            $self->start_project($c);
+        }
+    }
+    $c->res->content_type('application/json');
+    return $c->json->to_json( [\%sendback,\%errormessages] );
+};
+
+get '^/(\w+)$' { $c->forward('GET:/') };
+
+post '^/form/(\w+)$' accepts 'multipart-formdata' {
     my ($formname) = @_;
     my $form = $c->form($formname);
     if( $form ) {
         $form->process(params => $c->body_parameters->as_hashref);
         if( $form->validated ) {
             $c->freeze($formname,$form->values);
-
-            if($formname eq 'project') {
-                $self->start_project($c);
-            }
         }
     }
 
     return $c->forward('GET:/');
-}
+};
 
 sub auto {
     my ($self, $c) = @_;
@@ -57,7 +94,15 @@ sub pre_route {
     foreach my $formname (qw/author project/) {
         unless( %{$c->form($formname)->values} ) {
             if( my $freezed = $c->thaw($formname) ){
-                $c->form($formname)->process(params => $freezed);
+	        try {
+                    # if an field has the same name as the form
+                    # not using this form results in an error
+                    $c->form($formname)->process(params => $freezed);
+                }
+                catch {
+                    $c->log->error("invalid freezed data for form $formname: $_");
+		    $c->log->debug(Data::Dumper::Dumper($freezed));
+                }
             }
         }
     }

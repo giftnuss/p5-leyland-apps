@@ -5,7 +5,6 @@
 use HTML::FormHandler::Moose;
 extends 'LeylandX::Starter::Form';
 
-
 has_field with_context =>
    (
         type => 'Boolean',
@@ -15,37 +14,43 @@ has_field with_context =>
 
 has_field with_hfh => 
     (
-      type => 'Boolean',
-      label => 'With HTML::FormHandler',
-      default => 0
+        type => 'Boolean',
+        label => 'With HTML::FormHandler',
+        default => 0
     );
 
 sub on_ready 
 {
-  return q[
+  my ($self) = @_;
+  my $formname = $self->name;
+  #my $val = $self->field('with_context')->value;
+  return qq[
 function () {
+
+  /*  */
+
   var ids = ['with_context','with_hfh'];
 
   for(var c = 0; c < 2; ++c) {
      (function (action,option) {
-  
-         $('#' + action).bind('change',function (evt) {
+blix.log('#${formname}.' + action);
+         \$('#${formname}.' + action).bind('click',function (evt) {
+blix.log('change');
              var self = this;
              if(option) {
-                 $('#' + option).toggle(self.checked);
+                 \$('#' + option).toggle(self.checked);
              }
              else {
-                 $.get('features/' + action, function (data,status,xhr) {
-                     option = 'feature-' + action;
-                     $(self).parent().append('<div id="' + option + '">' + data + '</div>');
+                 \$.get('features/' + action, function (data,status,xhr) {
+                     option = '${formname}-content.' + action;
+                     \$(self).parent().append('<div id="' + option + '">' + data + '</div>');
                  });
              }
          });
      })(ids[c]);
-  } 
+  }
 }
 ]}
-
 
 no HTML::FormHandler::Moose;
 

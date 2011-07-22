@@ -8,19 +8,15 @@ extends 'LeylandX::Starter::Form';
 has_field author =>
 (
     type => 'Text',
-    default => 'Some Guy'
+    default => 'Some Guy',
+    label => 'Author'
 );
 
 has_field email =>
 (
     type => 'Email',
-    default => 'some_guy@email.com'
-);
-
-has_field 'submit' =>
-(
-    type => 'Submit',
-    value => 'Update'
+    default => 'some_guy@email.com',
+    label => 'Email'
 );
 
 no HTML::FormHandler::Moose;

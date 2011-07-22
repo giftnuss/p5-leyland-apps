@@ -22,7 +22,7 @@ sub _self_id
 
 has '+action' => (default => sub { shift->_self_id('/') });
 
-has '+name' => (default => sub { shift->_self_id('_') . '_form' });
+has '+name' => (default => sub { shift->_self_id('_') });
 
 # - customize me ;)
 # has '+widget_wrapper' => (default => 'None');
