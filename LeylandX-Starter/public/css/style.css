@@ -646,6 +646,14 @@ fieldset {
   padding: 0.33em;
 }
 
+#controls {
+  margin: 1em;
+  float: left;
+  width: auto;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid #36bf61;
+}
+
 #author_form fieldset,
 #project_form fieldset {
   width: auto;
