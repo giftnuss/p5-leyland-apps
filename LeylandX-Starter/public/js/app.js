@@ -60,7 +60,10 @@ jQuery(function () {
         $('form').each(function () {
             var formdata = {};
             result[this.id] = formdata;
-            $(':input',this).each(function () {
+            $(':input:not(:checkbox)',this).each(function () {
+                formdata[this.name] = $(this).val();
+            });
+	    $(':checkbox:checked',this).each(function () {
                 formdata[this.name] = $(this).val();
             });
         });

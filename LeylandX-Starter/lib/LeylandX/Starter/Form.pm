@@ -9,6 +9,12 @@ has 'context' =>
     isa => 'Leyland::Context'
 );
 
+sub to_json
+{
+    my ($self) = @_;
+    return $self->context->json->to_json($self->value);
+}
+
 sub _self_id
     {
         my $class = blessed(shift);

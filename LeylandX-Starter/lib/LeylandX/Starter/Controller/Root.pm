@@ -76,7 +76,7 @@ sub auto {
 sub pre_route {
     my ($self, $c) = @_;
 
-    foreach my $formname (qw/author project/) {
+    foreach my $formname (qw/author project features/) {
         unless( %{$c->form($formname)->values} ) {
             if( my $freezed = $c->thaw($formname) ){
 	        try {

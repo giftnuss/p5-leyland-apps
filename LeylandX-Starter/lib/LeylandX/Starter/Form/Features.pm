@@ -23,31 +23,34 @@ sub on_ready
 {
   my ($self) = @_;
   my $formname = $self->name;
-  #my $val = $self->field('with_context')->value;
+  my $ids = $self->to_json;
+
   return qq[
 function () {
 
-  /*  */
+  var ids = ${ids};
 
-  var ids = ['with_context','with_hfh'];
-
-  for(var c = 0; c < 2; ++c) {
+  for(var c in ids) {
      (function (action,option) {
-blix.log('#${formname}.' + action);
-         \$('#${formname}.' + action).bind('click',function (evt) {
-blix.log('change');
-             var self = this;
-             if(option) {
-                 \$('#' + option).toggle(self.checked);
-             }
-             else {
-                 \$.get('features/' + action, function (data,status,xhr) {
-                     option = '${formname}-content.' + action;
-                     \$(self).parent().append('<div id="' + option + '">' + data + '</div>');
-                 });
-             }
-         });
-     })(ids[c]);
+         \$('#${formname}').each(function () {
+             \$('#' + action, this).bind('click',function (evt) {
+                 var self = this;
+                 if(option) {
+                     \$('#' + option).toggle(self.checked);
+                 }
+                 else {
+                     \$.get('features/' + action, function (data,status,xhr) {
+                         option = '${formname}-content-' + action;
+                         \$(self).parent().append('<div id="' + option + '">' + data + '</div>');
+                     });
+                 }
+             }).each(function () {
+	         if(ids[c]) {
+                     \$(this).trigger('click').attr('checked',true);
+	         }
+	     });
+	 });
+     })(c);
   }
 }
 ]}
