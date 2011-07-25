@@ -12,6 +12,10 @@ has_field with_context =>
         default => 0
    );
 
+foreach my $plugin ('form','frost') {
+    has_field "use_plugin_${plugin}" => (type => 'Boolean', widget => 'NoRender');
+}
+
 has_field with_hfh => 
     (
         type => 'Boolean',
@@ -31,6 +35,9 @@ function () {
   var ids = ${ids};
 
   for(var c in ids) {
+     if(! c.match(/^with_/)) {
+          continue;
+     }
      (function (action,option) {
          \$('#${formname}').each(function () {
              \$('#' + action, this).bind('click',function (evt) {
@@ -42,6 +49,11 @@ function () {
                      \$.get('features/' + action, function (data,status,xhr) {
                          option = '${formname}-content-' + action;
                          \$(self).parent().append('<div id="' + option + '">' + data + '</div>');
+                         \$(':checkbox',\$('#' + option)).each(function () {
+                             if(ids[this.name]) {
+                                 this.checked = true;
+                             }
+                          });
                      });
                  }
              }).each(function () {
