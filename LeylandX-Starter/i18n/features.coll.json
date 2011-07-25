@@ -1,0 +1,14 @@
+{
+  "Extend Context Class": {
+    "de": "Context Klasse erweitern"
+  },
+  "form - plugin for simple access to form objects.": {
+    "de": "form - Erweiterung die Zugriff auf Formularobjekte vereinfacht."
+  },
+  "frost - pre alpha quality object serializer.": {
+    "de": "frost - Objektserialisierer (unterhalb von Alpha-Qualität)"
+  },
+  "With HTML::FormHandler": {
+    "de": "HTML::FormHandler verwenden"
+  }
+} 
