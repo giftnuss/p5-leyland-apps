@@ -63,8 +63,8 @@ has abstract =>
 has override_context =>
 (
     is => 'ro',
-    isa => 'Bool',
-    default => 0,
+    isa => 'HashRef',
+    default => sub { {enabled => 0} },
     documentation => 'If or not an overridden context class is used'
 );
 

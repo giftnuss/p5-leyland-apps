@@ -1,6 +1,6 @@
   package LeylandX::Starter::Build
 # ********************************
-; our $VERSION = '0.01';
+; our $VERSION = '0.02';
 # **********************
 use Moose;
 use Module::Pluggable::Object;
@@ -9,14 +9,16 @@ use LeylandX::Starter::Project;
 
 require Leyland::Cmd::Command::app;
 
-has search_path => (
+has search_path =>
+(
    is => 'rw',
    isa => 'ArrayRef',
    default => sub { [ __PACKAGE__ ] },
    documentation => q{Task root namespaces.}
 );
 
-has tasks => (
+has tasks =>
+(
    is => 'rw',
    isa => 'HashRef',
    builder => 'load_default_tasks',
@@ -74,13 +76,26 @@ sub load_default_tasks
     my $loader = Module::Pluggable::Object->new(
         search_path => $self->search_path,
         require => 1,
-        inner => 0
+        inner => 0,
+        except => qr/^.*::Build::(Plugin)::.*$/
     );
-    for my $plugin ($loader->plugins) {
-        my $task = $plugin->forProject($self->project);
-        $tasks->{$task->name} = $task;
-    }
+    $self->_setup_tasks($loader,$tasks);
     return $tasks;
+}
+
+sub _setup_tasks {
+    my ($self,$loader,$tasks) = @_;
+
+    for my $plugin ($loader->plugins) {
+        if(my $task = $plugin->forProject($self->project) ) {
+            if( defined $tasks->{$task->name} ) {
+                warn "taskname $task->name already in use.";
+                next;
+            }
+            $tasks->{$task->name} = $task;
+            $self->_setup_tasks($task,$tasks);       
+        }
+    }
 }
 
 my %data;

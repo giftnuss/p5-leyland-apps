@@ -4,7 +4,8 @@
 # **********************
 use Moose::Role;
 
-has name => (
+has name =>
+(
    is => 'ro',
    isa => 'Str',
    default => sub {
@@ -13,11 +14,25 @@ has name => (
    }
 );
 
-has dependencies => (
+has dependencies =>
+(
    is => 'ro',
    isa => 'HashRef[LeylandX::Starter::Task]',
    default => sub { {} }
 );
+
+has subtasks =>
+(
+   traits => ['Array'],
+   is => 'ro',
+   isa => 'ArrayRef[Str]',
+   default => sub { [] }
+);
+
+sub plugins
+{
+    return @{shift->subtasks};
+}
 
 sub set_dependency
 {

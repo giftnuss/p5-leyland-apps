@@ -137,6 +137,13 @@ sub start_project {
     $args->{author} = $c->form('author')->field('author')->value;
     $args->{email} = $c->form('author')->field('email')->value;
 
+    my $features = $c->form('features');
+    $args->{override_context} = {
+        enabled => $features->field('with_context')->value,
+        plugin_frost => $features->field('use_plugin_frost')->value,
+        plugin_form => $features->field('use_plugin_form')->value
+    };
+
     my $project = LeylandX::Starter::Project->new($args);
     my $builder = LeylandX::Starter::Build->new(project => $project);
 

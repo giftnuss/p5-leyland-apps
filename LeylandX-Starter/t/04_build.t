@@ -4,6 +4,7 @@ use warnings;
 use 5.010;
 use Test::More;
 
+use Data::Dumper;
 use File::Basename qw(dirname);
 use File::Path qw(mkpath remove_tree);
 
@@ -59,6 +60,44 @@ my $expected_tasknames = [
     'gitignore',
     'manifest',
     'manifest_skip',
+    'psgi',
+    'root',
+    'view_default'];
+
+is_deeply(\@tasknames,$expected_tasknames,'tasknames');
+$build->build();
+
+# -----------------------------------------------------
+$project = LeylandX::Starter::Project->new(
+    'author' => 'Just another perl hacker.',
+    'email' => 'japh@example.com',
+    'package_name' => 'Lx::Context',
+    'root_dir' => $rootdir,
+    'override_context' => {
+        enabled => 1,
+        plugin_frost => 1,
+        plugin_form => 1
+    }
+);
+$build = LeylandX::Starter::Build->new(project => $project);
+isa_ok($build,'LeylandX::Starter::Build');
+
+$tasks = $build->tasks;
+
+@tasknames = sort keys %$tasks;
+
+$expected_tasknames = [
+    'app',
+    'basedir',
+    'build',
+    'changes',
+    'context',
+    'dirtree',
+    'gitignore',
+    'manifest',
+    'manifest_skip',
+    'plugin_form',
+    'plugin_frost',
     'psgi',
     'root',
     'view_default'];

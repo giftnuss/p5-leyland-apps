@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 2;
+use Test::More tests => 3;
 use Plack::Test;
 
 use 5.010;
@@ -15,7 +15,14 @@ my $app = LeylandX::Starter->new(
     cwe => 'staging',
     config => {
         app => 'LeylandX::Starter',
-        views => ['Tenjin']
+        views => ['Tenjin'],
+        logger => {			
+                class => 'LogDispatch',
+		opts => {
+		    outputs => [
+			[ 'Screen', min_level => 'warning', newline => 1 ],
+		]}
+	}
     });
 
 my $c;
@@ -38,8 +45,10 @@ test_psgi( $handler, sub {
 });
 
 my $authorform = $c->form('author');
+my $projectform = $c->form('project');
 
 isa_ok($authorform,'LeylandX::Starter::Form::Author');
+isa_ok($projectform,'LeylandX::Starter::Form::Project');
 
 # say Dumper($c);
 

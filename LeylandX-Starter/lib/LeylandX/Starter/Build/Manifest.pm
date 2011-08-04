@@ -34,7 +34,11 @@ sub detect
 sub forProject
 {
     my ($self,$project) = @_;
-    return $self->new();
+    my $build = $self->new();
+    if($project->override_context->{enabled}) {
+        $build->set_dependency('context');
+    }
+    return $build;
 }
 
 no Moose;
