@@ -2,8 +2,8 @@ blib/
 Makefile
 Makefile.old
 pm_to_blib
-Build
-Build.bat
+./Build
+./Build.bat
 _build/
 .build/
 *.tar.gz

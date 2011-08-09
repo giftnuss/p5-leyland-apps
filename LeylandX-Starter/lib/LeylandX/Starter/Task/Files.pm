@@ -3,9 +3,7 @@
 ; our $VERSION = '0.01';
 # **********************
 use Moose::Role;
-
-with 'LeylandX::Starter::Task::Template',
-     'LeylandX::Starter::Task';
+with 'LeylandX::Starter::Task::Template';
 
 has file_map =>
 (
@@ -39,7 +37,12 @@ sub build
     }
 }
 
-sub depends { qw( basedir dirtree ) }
+after 'BUILD' => sub
+{
+    my ($self) = @_;
+    $self->add_dependency('basedir');
+    $self->add_dependency('dirtree');
+};
 
 no Moose::Role;
 1;

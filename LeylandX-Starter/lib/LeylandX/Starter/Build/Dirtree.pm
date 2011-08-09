@@ -3,7 +3,7 @@
 ; our $VERSION = '0.01';
 # **********************
 use Moose;
-with 'LeylandX::Starter::Task';
+extends 'LeylandX::Starter::Task';
 
 use MooseX::Types::Path::Class;
 
@@ -30,7 +30,11 @@ has dir_list => (
    }
 );
 
-sub depends { qw/basedir/ }
+sub BUILD
+{
+    my ($self) = @_;
+    $self->add_dependency('basedir');
+}
 
 sub detect
 {

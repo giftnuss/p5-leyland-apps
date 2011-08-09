@@ -82,6 +82,13 @@ $project = LeylandX::Starter::Project->new(
 $build = LeylandX::Starter::Build->new(project => $project);
 isa_ok($build,'LeylandX::Starter::Build');
 
+my $context = LeylandX::Starter::Build::Context->forProject($project);
+is_deeply([$context->depends],
+    ['basedir','dirtree','plugin_frost','plugin_form'],'Context Depends');
+is_deeply([$context->plugins],
+    ['LeylandX::Starter::Build::Plugin::Frost',
+     'LeylandX::Starter::Build::Plugin::Form'],'Context Plugins');
+
 $tasks = $build->tasks;
 
 @tasknames = sort keys %$tasks;

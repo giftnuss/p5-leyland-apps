@@ -3,7 +3,7 @@
 ; our $VERSION = '0.01';
 # **********************
 use Moose;
-with 'LeylandX::Starter::Task';
+extends 'LeylandX::Starter::Task';
 
 use MooseX::Types::Path::Class;
 
@@ -23,8 +23,6 @@ sub build
     my ($self) = @_;
     return $self->basedir->mkpath;
 }
-
-sub depends { () }
 
 sub forProject
 {

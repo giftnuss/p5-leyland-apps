@@ -3,6 +3,7 @@
 ; our $VERSION = '0.01';
 # **********************
 use Moose;
+extends 'LeylandX::Starter::Task';
 with 'LeylandX::Starter::Task::Files';
 
 has '+name' => (default => 'manifest_skip');

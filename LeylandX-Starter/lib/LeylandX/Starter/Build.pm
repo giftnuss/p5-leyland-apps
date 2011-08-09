@@ -22,7 +22,7 @@ has tasks =>
    is => 'rw',
    isa => 'HashRef',
    builder => 'load_default_tasks',
-   lazy => 1
+   lazy => 1,
 );
 
 has project =>
@@ -87,7 +87,7 @@ sub _setup_tasks {
     my ($self,$loader,$tasks) = @_;
 
     for my $plugin ($loader->plugins) {
-        if(my $task = $plugin->forProject($self->project) ) {
+        if(my $task = $plugin->forProject($self->project,$self) ) {
             if( defined $tasks->{$task->name} ) {
                 warn "taskname $task->name already in use.";
                 next;

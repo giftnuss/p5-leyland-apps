@@ -4,13 +4,15 @@
 # **********************
 use Moose;
 
-with 'LeylandX::Starter::Task',
-     'LeylandX::Starter::Task::Builder';
+extends 'LeylandX::Starter::Task';
+with 'LeylandX::Starter::Task::Builder';
 
 sub command { "$^X Build.PL && ./Build manifest" }
 
-sub depends { qw
-  ( 
+sub BUILD
+{ 
+    my ($self) = @_;
+    foreach my $dep (qw( 
     app
     basedir 
     build
@@ -19,7 +21,9 @@ sub depends { qw
     psgi
     root
     view_default
-  ) 
+    )) {
+    $self->add_dependency($dep);
+    }
 }
 
 sub detect 
@@ -36,7 +40,7 @@ sub forProject
     my ($self,$project) = @_;
     my $build = $self->new();
     if($project->override_context->{enabled}) {
-        $build->set_dependency('context');
+        $build->add_dependency('context');
     }
     return $build;
 }

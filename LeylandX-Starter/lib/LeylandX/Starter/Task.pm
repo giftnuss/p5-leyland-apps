@@ -2,7 +2,9 @@
 # *******************************
 ; our $VERSION = '0.01';
 # **********************
-use Moose::Role;
+use Moose;
+
+sub BUILD {}
 
 has name =>
 (
@@ -14,11 +16,35 @@ has name =>
    }
 );
 
+has dependslist =>
+(
+  traits => ['Array'],
+  is => 'rw',
+  isa => 'ArrayRef[Str]',
+  default => sub {[]},
+  handles => {
+        add_dependency => 'push'
+  },
+  documentation => 'holds the dependency names'
+);
+
+sub depends
+{
+    my ($self) = @_;
+    return @{$self->dependslist};
+}
+
 has dependencies =>
 (
+   traits => ['Hash'],
    is => 'ro',
    isa => 'HashRef[LeylandX::Starter::Task]',
-   default => sub { {} }
+   default => sub { {} },
+   handles => {
+     set_dependency => 'set',
+     get_dependency => 'get'
+   },
+   documentation => 'holds the dependency objects'
 );
 
 has subtasks =>
@@ -26,7 +52,10 @@ has subtasks =>
    traits => ['Array'],
    is => 'ro',
    isa => 'ArrayRef[Str]',
-   default => sub { [] }
+   default => sub { [] },
+   handles => {
+     add_subtask => 'push'
+   }
 );
 
 sub plugins
@@ -34,19 +63,7 @@ sub plugins
     return @{shift->subtasks};
 }
 
-sub set_dependency
-{
-    my ($self,$name,$task) = @_;
-    $self->dependencies->{$name} = $task;
-}
-
-sub get_dependency
-{
-    my ($self,$name) = @_;
-    return $self->dependencies->{$name};
-}
-
-no Moose::Role;
+no Moose;
 1;
 
 __END__
