@@ -58,6 +58,7 @@ has abstract =>
 (
     is => 'ro',
     isa => 'Maybe[Str]',
+    default => ''
 );
 
 has override_context =>

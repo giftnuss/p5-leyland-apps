@@ -3,26 +3,8 @@
 ; our $VERSION = '0.01';
 # **********************
 use Moose::Role;
-with 'LeylandX::Starter::Task::Template';
-
-has file_map =>
-(
-    is => 'rw',
-    isa => 'HashRef',
-    lazy => 1,
-    default => sub { {} }
-);
-
-sub detect
-{
-    my ($self) = @_;
-    my $basedir = $self->get_dependency('basedir')->basedir;
-
-    foreach my $file (values %{$self->file_map}) {
-        Path::Class::File->new($basedir,$file)->stat or return 0;
-    }
-    return 1;
-}
+with 'LeylandX::Starter::Task::Component::FileMap',
+     'LeylandX::Starter::Task::Template';
 
 sub build
 {
@@ -36,13 +18,6 @@ sub build
         $self->render_file($file,$tmpl);
     }
 }
-
-after 'BUILD' => sub
-{
-    my ($self) = @_;
-    $self->add_dependency('basedir');
-    $self->add_dependency('dirtree');
-};
 
 no Moose::Role;
 1;
