@@ -23,6 +23,13 @@ has_field with_hfh =>
         default => 0
     );
 
+has_field custom_form_base =>
+(
+    type => 'Boolean',
+    widget => 'NoRender',
+    default => 0
+);
+
 sub on_ready 
 {
   my ($self) = @_;

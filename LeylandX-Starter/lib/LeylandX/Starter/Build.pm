@@ -19,10 +19,14 @@ has search_path =>
 
 has tasks =>
 (
+   traits => ['Hash'],
    is => 'rw',
    isa => 'HashRef',
    builder => 'load_default_tasks',
    lazy => 1,
+   handles => {
+     'get_task' => 'get'
+   }
 );
 
 has project =>

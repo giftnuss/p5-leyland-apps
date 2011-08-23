@@ -21,8 +21,13 @@ sub forProject
         package_name => $project->package_name,
         author => $project->author,
         email => $project->email,
-        abstract => $project->abstract
+        abstract => ($project->abstract || 'TODO - what is this for?')
     };
+    my %modules;
+    if($project->form_helper->{'enabled'}) {
+        %modules = %{$project->form_helper->{'modules'}};
+    }
+    $opts->{'modules'} = \%modules;
     my $task = $self->new(opts => $opts);
     return $task;
 }
@@ -47,7 +52,10 @@ my $builder = Module::Build->new(
     dist_version => '0.00001',
     requires => {
         'perl' => '5.010001',
-        'Leyland' => '0.001004'
+        'Leyland' => '0.001004'<?pl
+    for my $pkg (sort keys %$modules) { ?>,
+        '[== $pkg =]' => '[== $modules->{$pkg} =]'
+    <?pl } ?>
     },
     build_requires => {
         'Test::More' => 0,

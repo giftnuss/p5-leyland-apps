@@ -1,5 +1,8 @@
 Revision history for LeylandX-Starter
 
+0.00004 - Mi 24. Aug 00:26:57 CEST 2011
+        - first iteration feature completeness
+
 0.00003 - Di 21. Jun 00:27:44 CEST 2011
 	- .gitignore creation
 	- a MANIFEST - via Build via Build.PL

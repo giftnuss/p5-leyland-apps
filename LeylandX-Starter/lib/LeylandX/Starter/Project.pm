@@ -69,6 +69,19 @@ has override_context =>
     documentation => 'If or not an overridden context class is used'
 );
 
+has form_helper =>
+(
+    is => 'ro',
+    isa => 'HashRef',
+    default => sub { {
+        enabled => 0,
+        modules => {
+             'HTML::FormHandler' => '0.35002'
+        },
+        custom_base => 0
+    } },
+);
+
 no Moose;
 1;
 

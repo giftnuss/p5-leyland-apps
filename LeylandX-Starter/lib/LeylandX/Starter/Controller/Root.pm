@@ -145,6 +145,9 @@ sub start_project {
     };
 
     my $project = LeylandX::Starter::Project->new($args);
+    $project->form_helper->{'enabled'} = $features->field('with_hfh')->value;
+    $project->form_helper->{'custom_base'} = $features->field('custom_form_base')->value;
+
     my $builder = LeylandX::Starter::Build->new(project => $project);
 
     $builder->build();
