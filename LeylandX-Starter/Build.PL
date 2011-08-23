@@ -19,7 +19,9 @@ my $builder = Module::Build->new(
     },
     build_requires => {
         'Test::More' => 0,
-        'Test::UseAllModules' => '0.12'
+        'Test::UseAllModules' => '0.12',
+	'Test::File::Contents' => '0.20',
+	'Data::Section' => '0.101621'
     },
     add_to_cleanup      => [ 'LeylandX-Starter-*' ],
     create_makefile_pl  => 'traditional',
