@@ -1,0 +1,17 @@
+blib/
+Makefile
+Makefile.old
+pm_to_blib
+Build
+Build.bat
+_build/
+.build/
+*.tar.gz
+.lwpcookies
+cover_db
+pod2htm*.tmp
+Fluppe-*
+MYMETA.yml
+*.bak
+views/*.cache
+*.log
