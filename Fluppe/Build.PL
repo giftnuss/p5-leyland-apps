@@ -11,14 +11,19 @@ my $builder = Module::Build->new(
     dist_version => '0.00001',
     requires => {
         'perl' => '5.010001',
-        'Leyland' => '0.001004',
+        'Leyland' => '0.001007',
+	'DBIx::Connector' => '0.46',
         'HTML::FormHandler' => '0.35002',
+
         'Config::INI' => '0.018',
-        'TAP::Formatter::HTML' => '0.09'
+        'TAP::Formatter::HTML' => '0.09',
+        'Test::AutoBuild' => '1.2.4'
     },
     build_requires => {
         'Test::More' => 0,
-        'Test::UseAllModules' => '0.12'
+        'Test::UseAllModules' => '0.12',
+        'Test::Requires' => '0.06',
+        'Test::WWW::Mechanize::PSGI' => '0.35'
     },
     add_to_cleanup      => [ 'Fluppe-*' ],
     create_makefile_pl  => 'traditional',

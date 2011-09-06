@@ -4,10 +4,27 @@ package Fluppe;
 our $VERSION = "0.001";
 $VERSION = eval $VERSION;
 
+use DBIx::Connector;
+
 use Moose;
 use namespace::autoclean;
 
 extends 'Leyland';
+
+has database =>
+(
+  is => 'ro',
+  isa => 'DBIx::Connector',
+  default => sub {
+    my ($self) = @_;
+    my $dsn = "sqlite:./" . $self->cwe . '.db';
+    my ($username,$password) = ('','');
+    DBIx::Connector->new($dsn, $username, $password, {
+        RaiseError => 1,
+        AutoCommit => 1,
+    })
+ }
+);
 
 sub setup {
 	my $self = shift;

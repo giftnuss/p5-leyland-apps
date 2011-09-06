@@ -6,12 +6,13 @@ use Module::Build;
 my $builder = Module::Build->new(
     module_name => 'Dampfer',
     license => 'perl',
-    dist_abstract => 'TODO',
-    dist_author => 'Some Guy <some_guy@email.com>',
+    dist_abstract => 'Data Made Perfectly From Empty Resources',
+    dist_author => 'Sebastian Knapp <rock@ccls-online.de>',
     dist_version => '0.00001',
     requires => {
         'perl' => '5.010001',
-        'Leyland' => '0.001004'
+        'Leyland' => '0.001004',
+	'Cheater' => '0.07'
     },
     build_requires => {
         'Test::More' => 0,

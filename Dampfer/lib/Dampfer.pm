@@ -8,6 +8,8 @@ use namespace::autoclean;
 
 extends 'Leyland';
 
+use Cheater::Eval ();
+
 =head1 NAME
 
 Dampfer - RESTful web application based on Leyland

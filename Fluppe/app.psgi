@@ -36,6 +36,16 @@ my $config = {
 		deployment => {
 			# options in here will override top level options when running in the deployment environment
 		},
+                testing => {
+		     logger => {
+                         class => 'LogHandler',
+                         opts => {
+			     outputs => [
+			         screen => { log_to => "STDERR", minlevel => 0, maxlevel => 4}
+                             ]
+                         }
+                     }
+                }
 	}
 };
 
