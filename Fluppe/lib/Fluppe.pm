@@ -4,30 +4,26 @@ package Fluppe;
 our $VERSION = "0.001";
 $VERSION = eval $VERSION;
 
-use DBIx::Connector;
+use Class::Load();
 
 use Moose;
 use namespace::autoclean;
 
 extends 'Leyland';
 
-has database =>
+has model =>
 (
   is => 'ro',
-  isa => 'DBIx::Connector',
+  isa => 'Fluppe::Model',
   default => sub {
-    my ($self) = @_;
-    my $dsn = "sqlite:./" . $self->cwe . '.db';
-    my ($username,$password) = ('','');
-    DBIx::Connector->new($dsn, $username, $password, {
-        RaiseError => 1,
-        AutoCommit => 1,
-    })
- }
+      Class::Load::load_class('Fluppe::Model');
+      Fluppe::Model->new()
+  }
 );
 
 sub setup {
-	my $self = shift;
+  my $self = shift;
+  $self->model->setup($self->cwe, $self->config);
 	
 	# this method is automatically called after the application has
 	# been initialized. you can perform some necessary initializations
