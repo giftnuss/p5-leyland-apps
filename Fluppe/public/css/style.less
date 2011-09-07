@@ -1,9 +1,35 @@
 
-@bg-dark: 0f0f6a;
-
-@fg1: c4c4ec;
+/**
+ * color
+ */
+@bg-dark: #0f0f6a;
+@bg-darker: #0d0d58;
+@fg1: #c4c4ec;
+@fg2: #1313a9;
+/**
+ * functions
+ */
+.border-radius (@radius) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
 
 body {
   background-color: @bg-dark;
   color: @fg1;
+}
+
+.project-box {
+  background-color: @bg-darker;
+  border-color: @fg2;
+  border-width: 1em;
+  border-style: solid;
+  .border-radius(4px);
+
+  padding: 0.4em;
+  overflow: hidden;
+  float: left;
+  clear: left;
+  margin: 1em;
 }
