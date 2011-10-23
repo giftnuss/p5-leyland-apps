@@ -2,6 +2,7 @@
 /**
  * color
  */
+@bg-blue: #3333dd;
 @bg-dark: #0f0f6a;
 @bg-darker: #0d0d58;
 @fg1: #c4c4ec;
@@ -32,4 +33,16 @@ body {
   float: left;
   clear: left;
   margin: 1em;
+}
+
+.xina-box {
+  background-color: @bg-darker;
+  border: @fg2 solid 0.33ex;
+  .border-radius(8px);
+}
+
+.xina-top {
+  background-color: @bg-blue;
+  min-height: 1.2ex;
+  .border-radius(8px);
 }
