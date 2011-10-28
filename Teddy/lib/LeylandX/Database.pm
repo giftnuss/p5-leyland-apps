@@ -3,6 +3,7 @@
   our $VERSION = '0.0001';
 # ************************
 
+use Class::Load;
 use Moose::Role;
 
 has database =>

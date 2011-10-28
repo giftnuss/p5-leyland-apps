@@ -44,6 +44,9 @@ my $app = sub {
 	$a->handle(shift);
 };
 
+my @public = map { s/^\.\/public\///; $_ } <./public/*>;
+my $pattern = join '|', @public;
+
 builder {
 	# enable whatever Plack middlewares you wish here, a good example
 	# would be the Session middleware.
@@ -52,7 +55,7 @@ builder {
 	# public directory, remove it (or comment it) if your web server
 	# is serving those files
 	enable 'Static',
-		path => qr{^/((images|js|css|fonts)/|favicon\.ico$|apple-touch-icon\.png$)},
+		path => qr{^/($pattern)},
 		root => './public/';
 
 	$app;

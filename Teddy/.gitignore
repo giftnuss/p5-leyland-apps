@@ -13,7 +13,7 @@ pod2htm*.tmp
 Teddy-*
 MYMETA.yml
 *.bak
-views/*.cache
+*.cache
 *.log
 *~
 
