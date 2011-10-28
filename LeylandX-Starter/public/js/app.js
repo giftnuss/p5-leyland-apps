@@ -42,7 +42,15 @@ var blix = {
         $('*[name="' + formid + '.' + fieldname +'"]').parent().append(msg);
     }
 }; 
+/**
+ * tiny plugin for manipulating form fields
+ */
+(function ($) {
+    $.fn.blank = function (options) {
 
+    }
+})(jQuery);
+ 
 jQuery(function () {
 
     var on_success = function (data,status,xhr) {
