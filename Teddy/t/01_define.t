@@ -14,12 +14,12 @@ my $schema = DBIx::Define->get_schema('teddy');
 
 my @tables = map { $_->name } $schema->get_tables;
 
-my @planned = ('project','repository','project_repository');
+my @planned = ('guest','photo','photo_note','session','session_guest');
 
 is_deeply(\@tables,\@planned,'table names');
 
 
-print join "|", Fluppe::Define->sql_for('SQLite');
+print scalar Teddy::Define->sql_for('SQLite');
 #use Data::Dumper;
 
 #print Dumper $schema;

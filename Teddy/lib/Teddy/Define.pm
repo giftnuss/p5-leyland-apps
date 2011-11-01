@@ -34,6 +34,21 @@ table('photo');
 
 column( photo_id => &recordid )->pk();
 column( uploaded_at => &datetime('create') );
+column( session_id => &recordid )->fk('session');
+
+table('photo_note');
+
+column( photo_id => &recordid )->pk();
+column( note => &text );
+
+table('session');
+
+column( session_id => &recordid )->pk();
+
+table('session_guest');
+
+column( session_id => &recordid )->fk('session')->pk();
+column( guest_id => &recordid )->fk('guest')->pk();
 
 1;
 

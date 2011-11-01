@@ -36,16 +36,6 @@ __SQL__
     return @tables;
 }
 
-sub load_schema {
-  my ($self,$db) = @_;
-
-  unless($self->tables($db)) {
-    foreach my $sql (Fluppe::Define->sql_for('SQLite')) {
-      $db->dbh->do($sql);
-    }
-  }
-}
-
 1;
 
 __END__
