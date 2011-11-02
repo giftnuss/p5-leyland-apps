@@ -14,6 +14,18 @@ has 'engine' =>
   builder => '_init_engine'
 );
 
+has 'localizer' =>
+(
+  is => 'rw',
+  isa => 'Leyland::Localizer',
+  writer => 'set_localizer'
+);
+
+after 'set_localizer' => sub {
+  my ($self) = @_;
+  $self->engine->{SERVICE}->{CONTEXT}->{LOCALIZER} = $self->localizer;
+};
+
 sub render
 {
     my ($self, $view, $context, $use_layout) = @_;
@@ -36,11 +48,19 @@ sub render
     return $output;
 }
 
+use Data::Dumper;
 my $i18n = sub {
-
+  my ($context,@args) = @_;
   
   return sub {
-    'AGA';
+    my $content = shift;
+    my $lc = $context->stash->{c};
+    my $lang;
+    if($lc) {
+        $lang = $lc->{lang};
+    }
+    $lang ||= 'en';   
+    $context->{LOCALIZER}->loc($content,$lang,@args);
   } 
 };
 

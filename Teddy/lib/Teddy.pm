@@ -8,9 +8,9 @@ use Moose;
 use namespace::autoclean;
 
 use Teddy::Model;
+use LeylandX::Languages::Localizer;
 
 extends 'Leyland';
-
 
 has model =>
 (
@@ -23,6 +23,14 @@ sub setup
 {
   my $self = shift;
   $self->model->setup_database($self->cwe, $self->config);
+
+  # init localizer, if localization path given
+  $self->_set_localizer(LeylandX::Languages::Localizer->new(path => $self->config->{locales}))
+        if exists $self->config->{locales};
+
+  foreach my $view ($self->views) {
+    $view->set_localizer($self->localizer) if $view->can('set_localizer');
+  }
 }
 
 __PACKAGE__->meta->make_immutable;
