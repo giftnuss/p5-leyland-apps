@@ -24,17 +24,19 @@ I<none, this is the root controller>
 # like '/blog' (i.e. something with a starting slash)
 prefix { '' }
 
-=head1 ROUTES
-
-=head2 GET /
-
-Returns text/html
-
-=cut
-
+# fresh start page
 get '^/$' {
-	# $self and $c are automatically available for you here
-	$c->template('index.html');
+  $c->template('index.html');
+}
+
+# foundation demo site
+get '^/demo$' {
+  $c->template('foundation.html');
+}
+
+# if you want to give something away
+get '/give/away$' {
+  $c->template('give.html');
 }
 
 =head1 METHODS
