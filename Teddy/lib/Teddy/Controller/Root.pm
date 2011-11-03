@@ -77,7 +77,11 @@ sub pre_route {
 
 sub pre_template {
 	my ($self, $c, $tmpl, $context, $use_layout) = @_;
-
+        if(!defined($use_layout) || $use_layout) {
+            $c->stash->{'tutor'} ||= 'Teddy';
+            $c->stash->{'page_title'} ||=
+                $c->loc("%1 helps you to give toys away.",$c->stash->{'tutor'}); 	
+        }
 	# this method is automatically called before a view/template is
 	# rendered by routes in this controller. It receives all the
 	# the Leyland context object ($c), the name of the view/template

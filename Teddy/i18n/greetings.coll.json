@@ -3,5 +3,13 @@
   "fi": "Nimeni on %1.",
   "de": "Mein Name ist %1.",
   "en": "My name is %1."
+  },
+"%1 greets you.": {
+  "de": "%1 grüßt dich.",
+  "en": "%1 greets you."
+  },
+"%1 helps you to give toys away.": {
+  "de": "%1 hilft dir Spielzeug zu verschenken.",
+  "en": "%1 helps you to give toys away."
   }
 }

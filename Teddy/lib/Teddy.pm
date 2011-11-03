@@ -28,7 +28,7 @@ sub setup
   $self->_set_localizer(LeylandX::Languages::Localizer->new(path => $self->config->{locales}))
         if exists $self->config->{locales};
 
-  foreach my $view ($self->views) {
+  foreach my $view (@{$self->views}) {
     $view->set_localizer($self->localizer) if $view->can('set_localizer');
   }
 }
