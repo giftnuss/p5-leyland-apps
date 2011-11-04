@@ -14,7 +14,16 @@ my $schema = DBIx::Define->get_schema('teddy');
 
 my @tables = map { $_->name } $schema->get_tables;
 
-my @planned = ('guest','photo','photo_note','session','session_guest');
+my @planned = (
+  'guest',
+  'photo',
+  'photo_note',
+  'session',
+  'session_guest',
+  'category',
+  'language',
+  'translation'
+);
 
 is_deeply(\@tables,\@planned,'table names');
 

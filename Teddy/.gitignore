@@ -17,3 +17,5 @@ MYMETA.yml
 *.log
 *~
 
+.carton/
+local/

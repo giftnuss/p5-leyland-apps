@@ -50,5 +50,23 @@ table('session_guest');
 column( session_id => &recordid )->fk('session')->pk();
 column( guest_id => &recordid )->fk('guest')->pk();
 
+table('category');
+
+column( category_id => &recordid )->pk();
+column( code => &varchar(16) )->unique();
+
+table('language');
+
+column( language_id => &recordid )->pk();
+column( code => &varchar(8) )->unique();
+
+table('translation');
+
+column( translation_id => &recordid )->pk();
+column( type => varchar(size => 11, default => 'unspecified') );
+column( language_id => &recordid )->fk('language');
+column( msgkey => &varchar(255) );
+column( msgstr => &text );
+
 1;
 
