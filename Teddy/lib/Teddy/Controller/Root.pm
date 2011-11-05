@@ -6,22 +6,6 @@ use namespace::autoclean;
 
 with 'Leyland::Controller';
 
-=head1 NAME
-
-Teddy::Controller::Root - Top level controller of Teddy
-
-=head1 SYNOPSIS
-
-=head1 DESCRIPTION
-
-=head1 PREFIX
-
-I<none, this is the root controller>
-
-=cut
-
-# the root controller has no prefix, other controllers will have something
-# like '/blog' (i.e. something with a starting slash)
 prefix { '' }
 
 # fresh start page
@@ -37,6 +21,14 @@ get '^/demo$' {
 # if you want to give something away
 get '/give/away$' {
   $c->template('give.html');
+}
+
+# if you upload a photo
+get '/give/photo/?(\d+)?$' {
+  my ($photoid) = shift;
+
+
+  $c->template('give.html',{photoid => $photoid});
 }
 
 =head1 METHODS

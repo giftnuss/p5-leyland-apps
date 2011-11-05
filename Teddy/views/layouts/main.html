@@ -1,3 +1,4 @@
+[% USE String %]
 <!DOCTYPE html>
 
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -61,6 +62,12 @@
 	<script src="javascripts/jquery.placeholder.min.js"></script>
 	<!-- End Combine and Compress These JS Files -->
 	<script src="javascripts/app.js"></script>
-	
+        [% TRY;
+             jsfile = String.new(template.name).replace('.html','.js').text;
+             USE File("./public/javascripts/app/" _ jsfile);
+        %]<script src="javascripts/app/[% jsfile %]"></script>[%
+           CATCH File ; END;
+        %]
+       	
 </body>
 </html>

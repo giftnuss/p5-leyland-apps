@@ -1,26 +1,18 @@
 
 use strict;
 use warnings;
-use Plack::Test;
+use Leyland::Test;
+use Test::More;
 
-use Teddy;
+app('Teddy');
 
-$ENV{'PLACK_ENV'} = 'staging';
+use Data::Dumper;
 
-my $app = Teddy->new(
-    cwe => 'staging',
-    config => {
-        app => 'Teddy',
-        logger => {			
-                class => 'LogDispatch',
-		opts => {
-		    outputs => [
-			[ 'Screen', min_level => 'warning', newline => 1 ],
-		]}
-	}
-    });
+#print Dumper(&app);
 
-$app->setup();
+done_testing();
+
+__END__
 
 my $c;
 my $handler = sub {

@@ -23,9 +23,8 @@ sub _self_id
     {
         my $class = blessed(shift);
         my $sep = shift || '::';
-        my $pos = index($class,'Form::') + 6;
-        $pos = $[ if $pos < $[;
-        my $action = lc(substr($class,$pos));
+        $class =~ s/Form:://g;
+        my $action = lc($class);
         $action =~ s/::/$sep/g;
         return $action;
     }
