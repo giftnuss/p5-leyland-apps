@@ -7,6 +7,8 @@ $VERSION = eval $VERSION;
 use Moose;
 extends 'Leyland::Context';
 
+with 'LeylandX::Plugin::Form';
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 

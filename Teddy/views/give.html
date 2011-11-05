@@ -1,2 +1,24 @@
 
+		<div class="row">
+			<div class="twelve columns">
+				<h2>[% '%1 greets you' | i18n(c.stash.tutor) %]</h2>
+				<p>[% FILTER i18n %]
+                                This project is in an early
+				development stage.
+                                [% END %]</p>
+				<hr />
+			</div>
+		</div>
+
 Lade ein Foto von dem Spielzeug hoch, welches du verschenken möchtest.
+
+[% c.form('photo').render %]
+
+[% USE Dumper %]
+
+
+Hallo
+
+[% USE date %]
+[% date.format %]  
+

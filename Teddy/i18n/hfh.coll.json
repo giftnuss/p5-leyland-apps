@@ -1,0 +1,177 @@
+{
+    "field is invalid": {
+       "de": "Feld ist ungültig",
+       "ru": "Поле неверно"
+    },
+    "Wrong value": {
+       "de": "Ungültiger Wert",
+       "ru": "Неверное значение"
+    },
+    "[_1] does not match": {
+       "de": "%1 ist kein gültiger Wert",
+       "ru": "не совпадает с [_1]"
+    },
+    "[_1] not allowed": {
+       "de": "[_1] ist nicht erlaubt",
+       "ru": "[_1] не разрешено"
+    },
+    "[_1] field is required": {
+       "de": "Feld ist erforderlich",
+       "ru": "поле [_1] является обязательным"
+    },
+    "error occurred": {
+       "de": "Fehler aufgetreten",
+       "ru": "произошла ошибка"
+    },
+    "Value must be between [_1] and [_2]": {
+       "de": "Wert muss zwischen %1 und %2 liegen",
+       "ru": "значение должно быть между %1 и %2"
+    },
+    "Value must be greater than or equal to [_1]": {
+       "de": "Wert muss größer oder gleich %1 sein",
+       "ru": "значение должно быть больше или равно %1"
+    },
+    "Value must be less than or equal to [_1]": {
+       "de": "Wert muss kleiner oder gleich %1 sein",
+       "ru": "значение должно быть меньше или равно %1"
+    },
+
+    "Must be a positive number": {
+       "de": "Muss eine positive Zahl sein",
+       "ru": "Должно быть положительным числом"
+    },
+    "Must be a positive integer": {
+       "de": "Muss eine positive ganze Zahl sein"
+    },
+    "Must be a negative number": {
+       "de": "Muss eine negative Zahl sein"
+    },
+    "Must be a negative integer": {
+       "de": "Muss eine negative ganze Zahl sein"
+    },
+    "Must be a single digit": {
+       "de": "Muss eine einzelne Ziffer sein"
+    },
+    "Must be a non-empty single line of no more than 255 chars": {
+       "de": "Muss eine nicht leere Zeile (max. 255 Zeichen) sein"
+    },
+    "Must be made up of letters, digits, and underscores": {
+       "de": "Darf nur Buchstaben, Ziffern oder \"_\" enthalten"
+    },
+    "Not a valid IP address": {
+       "de": "IP Adresse ungültig"
+    },
+    "Must not be all digits": {
+       "de": "Darf nicht nur Ziffern enthalten"
+    },
+    "Not a valid state": {
+       "de": "Kein gültiger Bundesstaat"
+    },
+    "Field contains non-printable characters": {
+       "de": "Feld enthält nicht druckbare Zeichen"
+    },
+    "Must be between 4 and 255 chars": {
+       "de": "4 bis 255 Zeichen erforderlich"
+    },
+    "Zip is not valid": {
+       "de": "PLZ ungültig"
+    },
+    "Must be a single line of no more than 255 chars": {
+       "de": "Muss eine einzelne Zeile (max. 255 Zeichen) sein"
+    },
+    "Email is not valid": {
+       "de": "E-Mail ist nicht gültig"
+    },
+    "Must not contain spaces": {
+       "de": "Darf keine Leerzeichen enthalten"
+    },
+    "Field must contain a single word": {
+       "de": "Feld muss ein einzelnes Wort enthalten"
+    },
+    "Must not be empty": {
+       "de": "Feld darf nicht leer bleiben"
+    },
+    "Must be between 8 and 255 chars, and contain a non-alpha char": {
+       "de": "Wert muss 8 bis 255 Zeichen und ein nicht alpha-num Zeihen enthalten"
+    },
+
+
+    "Date is too early": {
+       "de": "Datum ist zu früh"
+    },
+    "Date is too late": {
+       "de": "Datum ist zu spät"
+    },
+
+    "Not a valid DateTime": {
+       "de": "Ungültige Datums-/Zeitangabe"
+    },
+
+    "Invalid value for [_1]: [_2]": {
+       "de": "Ungültiger Wert für %1: %2"
+    },
+
+    "Email should be of the format [_1]": {
+       "de": "E-Mail sollte die Form %1 haben"
+    },
+
+    "Value must be an integer": {
+       "de": "Muss eine positive ganze Zahl sein"
+    },
+
+    "Value cannot be converted to money": {
+       "de": "Wert kann nicht in Betrag konvertiert werden"
+    },
+    "Value must be a real number": {
+       "de": "Muss eine Dezimalzahl sein"
+    },
+
+    "Please enter a password in this field": {
+       "de": "Bitte ein Passwort eingeben"
+    },
+    "Password must not match [_1]": {
+       "de": "Passwort darf nicht mit '%1' übereinstimmen"
+    },
+
+    "Please enter a password confirmation": {
+       "de": "Bitte das Passwort bestätigen"
+    },
+    "The password confirmation does not match the password": {
+       "de": "Passwort Bestätigung stimmt nicht überein"
+    },
+
+    "Value must be a positive integer": {
+       "de": "Muss eine positive ganze Zahl sein"
+    },
+
+    "This field does not take multiple values": {
+       "de": "Mehrfachauswahl nicht erlaubt"
+    },
+    "'[_1]' is not a valid value": {
+       "de": "'%1' ist kein gültiger Wert"
+    },
+
+    "Field should not exceed [quant,_1,character]. You entered [_2]": {
+       "de": "Bitte auf %1 Zeichen beschränken. Sie haben %2 eingegeben"
+    },
+    "Field must be at least [quant,_1,character]. You entered [_2]": {
+       "de": "Eingabe muss mindestens %1 Zeichen lang sein. Sie haben nur %2 eingegeben"
+    },
+
+    "File uploaded is empty": {
+       "de": "Hochgeladene Datei ist leer"
+    },
+    "File is too small (< [_1] bytes)": {
+       "de": "Datei ist zu klein (< [_1] bytes)"
+    },
+    "File is too big (> [_1] bytes)": {
+       "de": "Datei ist zu groß (> [_1] bytes)"
+    },
+    "File not found for upload field": {
+       "de": "Datei für upload Feld nicht gefunden"
+    },
+
+    "Value must be unique in the database": {
+       "de": "Wert existiert bereits in der Datenbank"
+    }
+}

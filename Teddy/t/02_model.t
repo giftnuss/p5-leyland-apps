@@ -28,7 +28,16 @@ eval {
 ok(!$@,"can connect with database - $@");
 is($name,'./unittest.db','database name');
 
-my @tables = qw(guest photo photo_note session session_guest);
+my @tables = qw(
+  category
+  guest
+  language
+  photo
+  photo_note
+  session
+  session_guest
+  translation
+);
 is_deeply([$model->get_table_names],\@tables,'tables names');
 
 done_testing();

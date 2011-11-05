@@ -8,7 +8,6 @@ use Plack::Builder;
 
 my $config = {
 	app => 'Teddy',
-	views => ['Tenjin'],
 	locales => './i18n',
 	logger => {
 		class => 'LogHandler',

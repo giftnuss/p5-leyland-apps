@@ -12,6 +12,11 @@ use LeylandX::Languages::Localizer;
 
 extends 'Leyland';
 
+has '+context_class' =>
+(
+  default => 'Teddy::Context'
+);
+
 has model =>
 (
   is => 'ro',
