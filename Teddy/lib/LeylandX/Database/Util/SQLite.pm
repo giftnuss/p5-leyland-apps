@@ -1,5 +1,5 @@
-  package LeylandX::Database::SQLite;
-# **********************************
+  package LeylandX::Database::Util::SQLite;
+# *****************************************
 use strict; use warnings; use utf8;
 
 use Try::Tiny;

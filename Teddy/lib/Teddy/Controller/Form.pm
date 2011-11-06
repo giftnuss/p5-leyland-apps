@@ -14,6 +14,15 @@ prefix { '/teddy' }
 post '^/photo' accepts 'multipart/form-data' {
 
     my $form = $c->form('photo');
+    my @params = ( photo => $c->uploads->{'photo'} );
+
+    use Data::Dumper;
+    warn Dumper(\@params);
+
+    $form->process( params => { @params } );
+    #return unless ( $form->validated );
+
+
 
     $c->forward('/give/photo');
 }
