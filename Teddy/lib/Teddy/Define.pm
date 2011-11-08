@@ -33,8 +33,9 @@ column( name => &word )->unique();
 table('photo');
 
 column( photo_id => &recordid )->pk();
-column( uploaded_at => &datetime('create') );
 column( session_id => &recordid )->fk('session');
+column( md5 => varchar(32) )->unique();
+column( uploaded_at => &datetime('create') );
 
 table('photo_note');
 

@@ -17,13 +17,17 @@ post '^/photo' accepts 'multipart/form-data' {
     my @params = ( photo => $c->uploads->{'photo'} );
 
     use Data::Dumper;
-    warn Dumper(\@params);
 
     $form->process( params => { @params } );
-    #return unless ( $form->validated );
 
+    if( $form->validated ) {
+         warn Dumper($form->field('photo')->value);
 
-
+            # perform validated form actions
+    }
+    else {
+        $c->forward('/give/away');
+    }
     $c->forward('/give/photo');
 }
 

@@ -7,8 +7,8 @@ use Teddy::Define ();
 
 use Moose;
 
-with 'LeylandX::Database',
-     'LeylandX::Database::Util';
+with 'LeylandX::Database';
+with 'LeylandX::Database::Util';
 
 after 'setup_database' => sub {
     my ($self) = @_;
