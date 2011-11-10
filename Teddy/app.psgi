@@ -56,6 +56,8 @@ builder {
 	enable 'Static',
 		path => qr{^/($pattern)},
 		root => './public/';
-
+        enable 'Session',
+                state => $a->session_state,
+                store => $a->session_store;
 	$app;
 };
