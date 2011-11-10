@@ -11,8 +11,11 @@ my $builder = Module::Build->new(
     dist_version => '0.00001',
     requires => {
         'perl' => '5.010001',
+        'HTML::FormHandler' => '0.35002',
+        'Image::Info' => 0,
+        'Image::Scale' => '0.08',
         'Leyland' => '0.001004',
-        'HTML::FormHandler' => '0.35002'
+        'Plack::Middleware::Session' => '0.14'
     },
     build_requires => {
         'Test::More' => 0,
