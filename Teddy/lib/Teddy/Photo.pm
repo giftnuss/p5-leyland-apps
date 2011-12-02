@@ -4,6 +4,8 @@
 # **********************
 use Moose;
 
+with 'Teddy::Role::Item';
+
 use CHI;
 use File::Slurp ();
 
@@ -17,7 +19,7 @@ use File::Slurp ();
 
 has key =>
 (
-  is => 'ro',
+  is => 'rw',
   isa => 'Int'
 );
 
@@ -52,7 +54,13 @@ sub create
     my ($self,$key,$file) = @_;
     my $data = File::Slurp::read_file($file,{binmode => ':raw'});
     $self->cache_file->set( $key, $data, "never");
-    $self->{'key'} = $key;
+    $self->key($key);
+}
+
+sub loaded
+{
+    my ($self) = @_;
+    return $self->key && $self->cache_file->is_valid($self->key);
 }
 
 no Moose;

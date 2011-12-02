@@ -2,8 +2,8 @@
 # *********************
   our $VERSION = '0.01';
 # **********************
-
 use Teddy::Define ();
+use Class::Load ();
 
 use Moose;
 
@@ -26,10 +26,21 @@ sub load_schema {
   }
 }
 
-
-__PACKAGE__->meta->make_immutable;
+{
+    my %model;
+    sub model {
+        my ($self,$name) = @_;
+        return $model{$name} ||= do {
+             my $class = 'Teddy::Model::' . ucfirst($name);
+             Class::Load::load_class($class);
+             $class->new(database => $self->database);
+        };
+    }
+};
 
 no Moose;
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 

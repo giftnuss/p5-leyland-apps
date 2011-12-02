@@ -5,10 +5,6 @@ our $VERSION = "0.001";
 $VERSION = eval $VERSION;
 
 use Moose;
-use namespace::autoclean;
-
-use Teddy::Model;
-use LeylandX::Languages::Localizer;
 
 extends 'Leyland';
 
@@ -17,11 +13,15 @@ has '+context_class' =>
   default => 'Teddy::Context'
 );
 
+use Teddy::Model;
+use LeylandX::Languages::Localizer;
+
 has model =>
 (
   is => 'ro',
   isa => 'Teddy::Model',
-  default => sub { Teddy::Model->new() }
+  default => sub { Teddy::Model->new() },
+  handles => {get_model => 'model'}
 );
 
 sub setup
@@ -37,6 +37,33 @@ sub setup
     $view->set_localizer($self->localizer) if $view->can('set_localizer');
   }
 }
+
+use Teddy::Session::State;
+use Teddy::Session::Store;
+
+has session_state =>
+(
+  is => 'ro',
+  isa => 'Teddy::Session::State',
+  default => sub { Teddy::Session::State->new() }
+);
+
+has session_store =>
+(
+  is => 'ro',
+  isa => 'Teddy::Session::Store',
+  default => sub { Teddy::Session::Store->new(app => shift()) }
+);
+
+use Teddy::Guest;
+
+sub new_guest
+{
+  my ($self) = @_; 
+  Teddy::Guest->new(model => $self->model);
+}
+
+no Moose;
 
 __PACKAGE__->meta->make_immutable;
 

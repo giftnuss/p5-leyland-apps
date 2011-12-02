@@ -45,6 +45,7 @@ column( note => &text );
 table('session');
 
 column( session_id => &recordid )->pk();
+column( id => &varchar(length('5ff81b43fb27c59e21cdb0445a8663caed614e40')) )->unique();
 
 table('session_guest');
 

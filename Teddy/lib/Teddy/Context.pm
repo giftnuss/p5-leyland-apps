@@ -1,7 +1,7 @@
-package Teddy::Context;
-# Abstract: Provides an extensible context object for your Leyland application
-
-our $VERSION = "0.001";
+  package Teddy::Context;
+# ***********************
+  our $VERSION = "0.001";
+# ***********************
 $VERSION = eval $VERSION;
 
 use Moose;
@@ -9,8 +9,46 @@ extends 'Leyland::Context';
 
 with 'LeylandX::Plugin::Form';
 
-__PACKAGE__->meta->make_immutable;
+has photo =>
+(
+  is => 'rw',
+  does => 'Teddy::Role::Item',
+  lazy => 1,
+  default => sub { new Teddy::Photo }
+);
+
+has '+user' =>
+(
+    default => sub {
+        my ($self) = @_;
+        my $user = $self->app->new_guest;
+
+        # using my special store makes this hack possible
+        if(ref $self->session) {
+            # erster Klick oder keine Cookies aktiv
+            #
+            # nur unnötige redundanz $user->start_session($self->session_id);
+        }
+        else {
+            # nicht der erste Klick und Cookie war in DB
+        }
+        $user
+    }
+);
+
+sub session_id
+{
+    shift->env->{'psgix.session.options'}{'id'};
+}
+
+sub session
+{
+    shift->env->{'psgix.session'}
+}
+
 no Moose;
+
+__PACKAGE__->meta->make_immutable;
 
 1;
 
@@ -29,6 +67,10 @@ Teddy::Context - Provides an extensible context object for your Leyland applicat
 L<Leyland::Context>
 
 =head1 METHODS
+
+=head2 session
+
+Returns a hashref with current session data.
 
 =head1 AUTHOR
 

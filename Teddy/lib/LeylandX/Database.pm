@@ -7,7 +7,8 @@ use Moose::Role;
 has database =>
 (
   is => 'ro',
-  isa => 'DBIx::Connector'
+  isa => 'DBIx::Connector',
+  handles => {run => 'run'}
 );
 
 no Moose::Role;

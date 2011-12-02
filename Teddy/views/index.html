@@ -1,4 +1,4 @@
-		
+[% USE Dumper %]
 		<div class="row">
 			<div class="twelve columns">
 				<h2>[% '%1 greets you' | i18n(c.stash.tutor) %]</h2>
@@ -23,6 +23,15 @@
 			
                                 <ul>
                                   <li>Form Namespace [% c.form_ns %]</li>
+                                  <li>
+                                     Session
+                                     <code>
+                                       ID [% c.session_id %]<br />
+                                          [% c.session %]<br />
+                                       Start[% c.session.start %]<br />
+                                       User [% Dumper.dump(c.user) %]
+                                     </code>
+                                  </li>
                                 </ul>
                         </div>
 		</div>

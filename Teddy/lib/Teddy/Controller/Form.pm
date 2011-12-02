@@ -9,7 +9,11 @@ use namespace::autoclean;
 
 with 'Leyland::Controller';
 
+use Teddy::Photo;
+
 prefix { '/teddy' }
+
+get '^/.*' { $c->forward('/'); }
 
 post '^/photo' accepts 'multipart/form-data' {
 

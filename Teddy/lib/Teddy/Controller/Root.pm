@@ -6,6 +6,8 @@ use namespace::autoclean;
 
 with 'Leyland::Controller';
 
+use Teddy::Photo;
+
 prefix { '' }
 
 # fresh start page
@@ -26,9 +28,15 @@ get '/give/away$' {
 # if you upload a photo
 get '/give/photo/?(\d+)?$' {
   my ($photoid) = shift;
-
-
-  $c->template('give.html',{photoid => $photoid});
+  if($photoid) {
+    $c->photo->load($photoid);
+  }
+  if($c->photo->loaded()) {
+    $c->template('describe.html');
+  }
+  else {
+    $c->template('error.html');
+  }
 }
 
 =head1 METHODS
@@ -39,7 +47,6 @@ get '/give/photo/?(\d+)?$' {
 
 sub auto {
 	my ($self, $c) = @_;
-
 	# this method is automatically called before the actual route method
 	# is performed. every auto() method starting from the Root controller
 	# and up to the matched route's controller are invoked in order,
