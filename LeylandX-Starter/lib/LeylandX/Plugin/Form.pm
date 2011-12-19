@@ -1,7 +1,8 @@
-package LeylandX::Plugin::Form;
-
+  package LeylandX::Plugin::Form;
+# *******************************
+  our $VERSION = '0.01';
+# **********************
 use Moose::Role;
-
 use Module::Pluggable;
 
 requires 'app';
@@ -64,3 +65,12 @@ no Moose::Role;
 1;
 
 __END__
+
+=head1 NAME
+
+LeylandX::Plugin::Form - create form objects by name
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
