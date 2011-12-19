@@ -1,0 +1,11 @@
+app.psgi
+Build.PL
+Changes
+lib/Satz.pm
+lib/Satz/Context.pm
+lib/Satz/Controller/Root.pm
+lib/Satz/Form.pm
+MANIFEST			This list of files
+MANIFEST.SKIP
+views/index.html
+views/layouts/main.html

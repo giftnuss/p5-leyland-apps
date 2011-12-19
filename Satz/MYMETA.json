@@ -1,0 +1,39 @@
+{
+   "abstract" : "Ein Editor",
+   "author" : [
+      "Sebastian B. Knapp <rock@ccls-online.de>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Satz",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : 0,
+            "Test::UseAllModules" : "0.12"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "HTML::FormHandler" : "0.35002",
+            "Leyland" : "0.001004",
+            "perl" : "5.010001"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "homepage" : "http://github.com/giftnuss/p5-leyland-apps/tree/master/Satz",
+      "repository" : {
+         "url" : "git://github.com/giftnuss/p5-leyland-apps.git"
+      }
+   },
+   "version" : "0.00001"
+}
