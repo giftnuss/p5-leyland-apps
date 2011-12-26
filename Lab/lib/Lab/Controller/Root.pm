@@ -12,13 +12,19 @@ get '^/$' {
     # $self and $c are automatically available for you here
 
     my $pages = [
-        { tag => "Hello World", url => '/heloworld', count => 0}    
+        { tag => "Hello World", url => '/helloworld', count => 0}    
     ];
 
 
     $c->template('index.html',{
         pages => $c->json->encode($pages)
     });
+}
+
+get '^/helloworld' {
+    $c->stash->{_layout} = 'layouts/jasmine.html';
+    $c->stash->{undertest} = 'helloworld.js';
+    $c->template('jasmine.html');
 }
 
 sub auto {
