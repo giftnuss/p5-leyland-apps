@@ -1,0 +1,19 @@
+
+<fieldset>
+    <legend>user</legend>
+    <ul>
+      <li><a href="/user/giftnuss">giftnuss</a>
+      <li><a href="/user/plu">plu</a>
+    </ul>
+</fieldset>
+
+<div>
+<?pl if($user) { ?>
+  [== $user =]
+
+  <?pl while(my $repo = $repos->next) { ?>
+    <ul>
+      <li>[== $repo->{'name'} =]: [== $repo->{'description'} =]</li>
+    </ul>
+  <?pl } ?>
+<?pl } ?>
